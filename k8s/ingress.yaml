@@ -1,0 +1,18 @@
+# Optional alternative to frontend Service type LoadBalancer.
+# Install an Ingress Controller first, then apply this file.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: user-management-ingress
+spec:
+  rules:
+    - host: users.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80
